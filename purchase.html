@@ -3,4 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
+    <title>Get Access - TradeInsights</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .site-header {
+            background: #fff; border-bottom: 1px solid #e1e1e1; padding: 1rem 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #2E5F8A; text-decoration: none; }
+        .main-nav a { margin-left: 2rem; text-decoration: none; color: #333; font-weight: 500; }
+        .main-nav a.nav-cta { background: #2E5F8A; color: white; padding: 0.5rem 1.5rem; border-radius: 5px; }
+        
+        .purchase-hero { 
+            background: linear-gradient(135deg, #1E3A5F 0%, #2E5F8A 100%); 
+            color: white; 
+            padding: 8rem 2rem 4rem; 
+            text-align: center; 
+            margin-top: 60px; 
+        }
+        
+        .purchase-content { 
+            padding: 4rem 0; 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
+        
+        .package-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .package {
+            background: white;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .package.featured {
+            border-color: #2E5F8A;
+            background: #f8f9fa;
+            transform: scale(1.05);
+        }
+        
+        .package-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2E5F8A;
+            margin: 1rem 0;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-item:before {
+            content: "•";
+            color: #4CAF50;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .btn-purchase {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .guarantee-box {
+            background: #e8f5e8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .site-footer { 
+            background: #1a1a1a; 
+            color: white; 
+            text-align: center; 
+            padding: 2rem 0; 
+            margin-top: 4rem; 
+        }
+        
+        .site-footer a { 
+            color: #4CAF50; 
+            text-decoration: none; 
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">TradeInsights</a>
+                <nav class="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="goals.html">Goals</a>
+                    <a href="sample.html">Sample</a>
+                    <a href="purchase.html" class="nav-cta">Get Access</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="purchase-hero">
+        <div class="container">
+            <h1>Access TradeInsights Methodology</h1>
+            <p>Complete algorithmic analysis framework for 2025 markets</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="purchase-content">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1E3A5F;">Choose Your Access Level</h2>
+            
+            <div class="package-container">
+                <div class="package">
+                    <div class="package-header">
+                        <h3>Standard Access</h3>
+                        <div class="price">$47</div>
+                        <p>Complete analytical framework</p>
+                    </div>
+                    
+                    <div class="features">
+                        <div class="feature-item">Full algorithmic analysis methodology</div>
+                        <div class="feature-item">Risk management frameworks</div>
+                        <div class="feature-item">Pattern recognition systems</div>
+                        <div class="feature-item">Portfolio optimization strategies</div>
+                        <div class="feature-item">PDF, ePub, and Mobi formats</div>
+                        <div class="feature-item">Lifetime access to purchased content</div>
+                    </div>
+                    
+                    <a href="#" class="btn-purchase">Get Standard Access</a>
+                </div>
+                
+                <div class="package featured">
+                    <div class="package-header">
+                        <h3>Professional Access</h3>
+                        <div class="price">$97</div>
+                        <p>Complete system with tools</p>
+                    </div>
+                    
+                    <div class="features">
+                        <div class="feature-item">Everything in Standard Access</div>
+                        <div class="feature-item">Additional advanced strategies</div>
+                        <div class="feature-item">Excel analysis templates</div>
+                        <div class="feature-item">Risk calculation worksheets</div>
+                        <div class="feature-item">Portfolio tracking tools</div>
+                        <div class="feature-item">Priority email support</div>
+                        <div class="feature-item">Methodology updates for 1 year</div>
+                    </div>
+                    
+                    <a href="#" class="btn-purchase">Get Professional Access</a>
+                </div>
+            </div>
+            
+            <div class="guarantee-box">
+                <h3>30-Day Knowledge Guarantee</h3>
+                <p>If you apply the methodologies and don't feel they enhance your analytical capabilities, contact us within 30 days for a full refund.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <p><strong>Payment Processing:</strong> We use secure payment processors to ensure your transaction is protected.</p>
+                <p><strong>Instant Access:</strong> You'll receive immediate digital delivery after payment confirmation.</p>
+                <p><a href="disclaimer.html" style="color: #2E5F8A;">Please review our disclaimer before purchasing</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 TradeInsights. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="disclaimer.html">Disclaimer</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
