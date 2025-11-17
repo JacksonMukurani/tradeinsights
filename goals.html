@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals - TradeInsights</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .site-header {
+            background: #fff; border-bottom: 1px solid #e1e1e1; padding: 1rem 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #2E5F8A; text-decoration: none; }
+        .main-nav a { margin-left: 2rem; text-decoration: none; color: #333; font-weight: 500; }
+        .main-nav a.nav-cta { background: #2E5F8A; color: white; padding: 0.5rem 1.5rem; border-radius: 5px; }
+        
+        .goals-hero { 
+            background: linear-gradient(135deg, #1E3A5F 0%, #2E5F8A 100%); 
+            color: white; 
+            padding: 8rem 2rem 4rem; 
+            text-align: center; 
+            margin-top: 60px; 
+        }
+        
+        .goals-content { 
+            padding: 4rem 0; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        
+        .goal-section { 
+            margin: 2rem 0; 
+            padding: 2rem; 
+            background: #f8f9fa; 
+            border-radius: 8px; 
+            border-left: 4px solid #2E5F8A;
+        }
+        
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .outcome-item {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e1e1e1;
+        }
+        
+        .outcome-item h3 {
+            color: #2E5F8A;
+            margin-bottom: 1rem;
+        }
+        
+        .site-footer { 
+            background: #1a1a1a; 
+            color: white; 
+            text-align: center; 
+            padding: 2rem 0; 
+            margin-top: 4rem; 
+        }
+        
+        .site-footer a { 
+            color: #4CAF50; 
+            text-decoration: none; 
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">TradeInsights</a>
+                <nav class="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="goals.html">Goals</a>
+                    <a href="sample.html">Sample</a>
+                    <a href="purchase.html" class="nav-cta">Get Access</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="goals-hero">
+        <div class="container">
+            <h1>Learning Objectives</h1>
+            <p>Systematic market analysis skills for 2025 trading environments</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="goals-content">
+            <div class="goal-section">
+                <h2>Primary Objectives</h2>
+                <p>The TradeInsights methodology is designed to help analysts and traders develop systematic approaches to market analysis with specific, measurable outcomes.</p>
+            </div>
+            
+            <div class="goal-section">
+                <h2>Expected Outcomes</h2>
+                <div class="outcome-grid">
+                    <div class="outcome-item">
+                        <h3>Analytical Framework Development</h3>
+                        <p>Establish systematic approaches to market analysis that can be consistently applied across different market conditions and asset classes.</p>
+                    </div>
+                    
+                    <div class="outcome-item">
+                        <h3>Risk Management Proficiency</h3>
+                        <p>Implement quantitative risk assessment techniques and position sizing strategies appropriate for 2025 market volatility levels.</p>
+                    </div>
+                    
+                    <div class="outcome-item">
+                        <h3>Pattern Recognition Skills</h3>
+                        <p>Develop ability to identify and validate recurring market patterns using statistical methods and algorithmic tools.</p>
+                    </div>
+                    
+                    <div class="outcome-item">
+                        <h3>Portfolio Construction</h3>
+                        <p>Apply modern portfolio theory concepts to build diversified, risk-adjusted portfolios suited to current market dynamics.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="goal-section">
+                <h2>Methodological Goals</h2>
+                <p>Our approach emphasizes reproducible analytical processes over speculative predictions. The focus is on developing frameworks that can be systematically tested, refined, and applied across various market environments.</p>
+                <p>By mastering these systematic approaches, analysts can reduce emotional decision-making and focus on statistically significant market behaviors and risk-adjusted opportunities.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 TradeInsights. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="disclaimer.html">Disclaimer</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
