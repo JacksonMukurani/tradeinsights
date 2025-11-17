@@ -1052,4 +1052,154 @@
                         <p>Complete analytical framework</p>
                         <ul style="text-align: left; margin: 1.5rem 0;">
                             <li>Full algorithmic analysis methodology</li>
-                           
+                            <li>Risk management frameworks</li>
+                            <li>Pattern recognition systems</li>
+                            <li>Portfolio optimization strategies</li>
+                            <li>Multiple format access</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;">Get Standard Access</button>
+                    </div>
+                    
+                    <div class="pricing-item featured">
+                        <h3>Professional Access</h3>
+                        <div class="price">$97</div>
+                        <p>Complete system with advanced tools</p>
+                        <ul style="text-align: left; margin: 1.5rem 0;">
+                            <li>Everything in Standard Access</li>
+                            <li>Additional advanced strategies</li>
+                            <li>Excel analysis templates</li>
+                            <li>Risk calculation worksheets</li>
+                            <li>Portfolio tracking tools</li>
+                            <li>Priority email support</li>
+                            <li>1 year of methodology updates</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%; background: var(--accent-teal);">Get Professional Access</button>
+                    </div>
+                </div>
+
+                <div class="final-cta">
+                    <div class="final-cta-content">
+                        <h3>30-Day Knowledge Guarantee</h3>
+                        <p style="margin: 1rem 0;">If you apply our methodologies and don't feel they enhance your analytical capabilities, contact us within 30 days for a full refund.</p>
+                        <p><strong>Note:</strong> This is a demonstration. Actual payment processing would be implemented with services like Gumroad or Stripe.</p>
+                    </div>
+                </div>
+
+                <div class="disclaimer-box">
+                    <h4>Risk Disclaimer</h4>
+                    <p>Financial markets involve substantial risk of loss and are not suitable for all investors. The analytical methodologies presented are for educational purposes and should not be considered as financial advice. Past performance does not guarantee future results.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <a onclick="showPage('home')">Home</a>
+                    <a onclick="showPage('methodology')">Methodology</a>
+                    <a onclick="showPage('objectives')">Objectives</a>
+                    <a onclick="showPage('sample')">Sample Analysis</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#disclaimer">Risk Disclaimer</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#contact">Contact</a>
+                    <a onclick="showPage('purchase')">Access Platform</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TradeInsights. Advanced Market Intelligence Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED: Working JavaScript -->
+    <script>
+        // Page Management - FIXED
+        function showPage(pageId) {
+            console.log('Showing page:', pageId);
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+            
+            // Close menu if open
+            if (document.body.classList.contains('menu-open')) {
+                closeLiquidMenu();
+            }
+        }
+
+        // Navigation with auto-close
+        function navigateToPage(pageId) {
+            showPage(pageId);
+            closeLiquidMenu();
+        }
+
+        // Liquid Menu Management - FIXED
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const liquidMenu = document.getElementById('liquidMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        function toggleLiquidMenu() {
+            document.body.classList.toggle('menu-open');
+            document.body.style.overflow = document.body.classList.contains('menu-open') ? 'hidden' : '';
+        }
+        
+        function closeLiquidMenu() {
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+        }
+        
+        // Menu button click
+        mobileMenuBtn.addEventListener('click', toggleLiquidMenu);
+        
+        // Tap anywhere to close
+        menuOverlay.addEventListener('click', closeLiquidMenu);
+        
+        // Also close when clicking on liquid background
+        liquidMenu.addEventListener('click', function(e) {
+            if (e.target === liquidMenu) {
+                closeLiquidMenu();
+            }
+        });
+
+        // Escape key to close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+                closeLiquidMenu();
+            }
+        });
+
+        // Initialize - FIXED
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded - initializing pages');
+            showPage('home');
+        });
+
+        // Header scroll behavior
+        let lastScrollTop = 0;
+        const header = document.querySelector('.site-header');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100 && !document.body.classList.contains('menu-open')) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        }, { passive: true });
+    </script>
+</body>
+</html>
