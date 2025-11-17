@@ -38,6 +38,21 @@
             overflow-x: hidden;
         }
 
+        /* Page Management */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Mobile-First Container */
         .container {
             width: 100%;
@@ -76,6 +91,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             z-index: 1001;
+            cursor: pointer;
         }
 
         /* FIXED: Proper Mobile Menu Button */
@@ -129,6 +145,7 @@
             border-radius: 25px;
             transition: all 0.3s ease;
             white-space: nowrap;
+            cursor: pointer;
         }
 
         .main-nav a:hover {
@@ -181,6 +198,7 @@
 
         .mobile-nav.active {
             right: 0;
+            display: block;
         }
 
         .mobile-nav a {
@@ -193,6 +211,7 @@
             border-radius: 10px;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
+            cursor: pointer;
         }
 
         .mobile-nav a:hover {
@@ -214,7 +233,7 @@
             box-shadow: var(--shadow);
         }
 
-        /* Rest of your existing styles remain the same */
+        /* Common Section Styles */
         .hero {
             background: var(--gradient-primary);
             color: var(--white);
@@ -312,6 +331,9 @@
             display: inline-block;
             text-align: center;
             min-width: 160px;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
         }
 
         .btn-primary {
@@ -441,6 +463,7 @@
             display: block;
             margin-bottom: 0.5rem;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -451,6 +474,50 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Page-specific styles */
+        .methodology-grid, .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .methodology-item, .pricing-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .pricing-item.featured {
+            border: 3px solid var(--accent-teal);
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin: 1rem 0;
+        }
+
+        .sample-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .disclaimer-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
         /* FIXED: Enhanced Mobile Responsive Design */
@@ -474,7 +541,6 @@
                 padding: 0 1.5rem;
             }
 
-            /* FIXED: Show mobile menu button, hide desktop nav */
             .mobile-menu-btn {
                 display: flex;
             }
@@ -495,7 +561,7 @@
                 font-size: 1.1rem;
             }
 
-            .benefits-grid {
+            .benefits-grid, .methodology-grid, .pricing-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
@@ -528,6 +594,10 @@
                 border-radius: 20px;
                 margin: 2rem 0;
             }
+
+            .pricing-item.featured {
+                transform: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -539,7 +609,7 @@
                 font-size: 1rem;
             }
 
-            .benefit-card {
+            .benefit-card, .methodology-item, .pricing-item {
                 padding: 1.5rem;
             }
 
@@ -582,15 +652,15 @@
     <header class="site-header">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">TradeInsights</a>
+                <a class="logo" onclick="showPage('home')">TradeInsights</a>
                 
                 <!-- Desktop Navigation -->
                 <nav class="main-nav">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">Methodology</a>
-                    <a href="goals.html">Objectives</a>
-                    <a href="sample.html">Analysis</a>
-                    <a href="purchase.html" class="nav-cta">Access Platform</a>
+                    <a onclick="showPage('home')">Home</a>
+                    <a onclick="showPage('methodology')">Methodology</a>
+                    <a onclick="showPage('objectives')">Objectives</a>
+                    <a onclick="showPage('sample')">Analysis</a>
+                    <a onclick="showPage('purchase')" class="nav-cta">Access Platform</a>
                 </nav>
                 
                 <!-- Mobile Menu Button -->
@@ -607,104 +677,320 @@
         
         <!-- Mobile Navigation Menu -->
         <nav class="mobile-nav" id="mobileNav">
-            <a href="index.html">Home</a>
-            <a href="about.html">Methodology</a>
-            <a href="goals.html">Objectives</a>
-            <a href="sample.html">Analysis</a>
-            <a href="purchase.html" class="nav-cta">Access Platform</a>
+            <a onclick="showPage('home'); toggleMobileMenu();">Home</a>
+            <a onclick="showPage('methodology'); toggleMobileMenu();">Methodology</a>
+            <a onclick="showPage('objectives'); toggleMobileMenu();">Objectives</a>
+            <a onclick="showPage('sample'); toggleMobileMenu();">Analysis</a>
+            <a onclick="showPage('purchase'); toggleMobileMenu();" class="nav-cta">Access Platform</a>
         </nav>
     </header>
 
-    <!-- Rest of your content remains exactly the same -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Advanced Market Intelligence for 2025</h1>
-                <p>Algorithmic analysis frameworks designed for modern financial markets with adaptive risk management systems</p>
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Advanced Market Intelligence for 2025</h1>
+                    <p>Algorithmic analysis frameworks designed for modern financial markets with adaptive risk management systems</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">AI</div>
+                            <h3>Machine Learning Analysis</h3>
+                            <p>Advanced pattern recognition and predictive modeling</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">RM</div>
+                            <h3>Risk Management</h3>
+                            <p>Quantitative risk assessment and position sizing algorithms</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">DA</div>
+                            <h3>Data Analytics</h3>
+                            <p>Statistical analysis and market behavior modeling</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="showPage('purchase')">Access Full Platform</button>
+                        <button class="btn btn-secondary" onclick="showPage('sample')">View Sample Analysis</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Comprehensive Analytical Framework</h2>
                 
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">AI</div>
-                        <h3>Machine Learning Analysis</h3>
-                        <p>Advanced pattern recognition and predictive modeling</p>
+                <div class="chapter-grid">
+                    <div class="chapter-card">
+                        <h3>Algorithmic Market Analysis</h3>
+                        <p>Advanced pattern recognition techniques and machine learning applications for identifying market opportunities in 2025 market conditions with quantitative validation.</p>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">RM</div>
-                        <h3>Risk Management</h3>
-                        <p>Quantitative risk assessment and position sizing algorithms</p>
+                    
+                    <div class="chapter-card">
+                        <h3>Risk Management Systems</h3>
+                        <p>Quantitative risk assessment models and dynamic position sizing algorithms designed for volatile market environments with multiple timeframe analysis.</p>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">DA</div>
-                        <h3>Data Analytics</h3>
-                        <p>Statistical analysis and market behavior modeling</p>
+                    
+                    <div class="chapter-card">
+                        <h3>Data-Driven Frameworks</h3>
+                        <p>Systematic approaches to market analysis that remove emotional bias and focus on statistical probabilities across multiple asset classes.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Portfolio Optimization</h3>
+                        <p>Modern portfolio theory applications and algorithmic rebalancing strategies specifically designed for 2025 market dynamics and regulatory changes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="final-cta">
+                <div class="final-cta-content">
+                    <h2>Ready for Advanced Market Analysis?</h2>
+                    <p style="margin: 1.5rem 0; opacity: 0.9;">Join professional analysts using systematic approaches to identify market opportunities with quantified risk parameters.</p>
+                    <button class="btn btn-primary" onclick="showPage('purchase')" style="background: var(--white); color: var(--primary-blue);">Get Complete Access</button>
+                    <p style="margin-top: 1.5rem; opacity: 0.8; font-style: italic;">30-Day Analytical Framework Guarantee</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- METHODOLOGY PAGE -->
+    <div id="methodology" class="page">
+        <section class="hero" style="background: var(--gradient-accent);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Our Analytical Methodology</h1>
+                    <p>Systematic approaches to market analysis using quantitative methods and machine learning</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Methodological Framework</h2>
+                
+                <div class="methodology-grid">
+                    <div class="methodology-item">
+                        <h3>Quantitative Analysis</h3>
+                        <p>Statistical modeling of market data using regression analysis, time series forecasting, and probability distributions to identify patterns and relationships.</p>
+                    </div>
+                    
+                    <div class="methodology-item">
+                        <h3>Machine Learning</h3>
+                        <p>Application of supervised and unsupervised learning algorithms for pattern recognition, classification, and predictive modeling across multiple asset classes.</p>
+                    </div>
+                    
+                    <div class="methodology-item">
+                        <h3>Risk Assessment</h3>
+                        <p>Comprehensive risk modeling including value at risk (VaR), stress testing, scenario analysis, and correlation studies to quantify and manage portfolio risk.</p>
+                    </div>
+                </div>
+
+                <div class="chapter-card">
+                    <h3>Data Processing Pipeline</h3>
+                    <p>Our methodology begins with robust data collection and preprocessing, including:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li>Real-time market data ingestion and validation</li>
+                        <li>Feature engineering and dimensionality reduction</li>
+                        <li>Normalization and standardization procedures</li>
+                        <li>Outlier detection and handling</li>
+                    </ul>
+                </div>
+
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showPage('sample')">View Sample Analysis</button>
+                    <button class="btn btn-secondary" onclick="showPage('purchase')">Access Full Methodology</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- OBJECTIVES PAGE -->
+    <div id="objectives" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #2E5F8A 0%, #4CAF50 100%);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Learning Objectives</h1>
+                    <p>Develop systematic market analysis skills for 2025 trading environments</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Educational Outcomes</h2>
+                
+                <div class="chapter-grid">
+                    <div class="chapter-card">
+                        <h3>Analytical Framework Development</h3>
+                        <p>Establish systematic approaches to market analysis that can be consistently applied across different market conditions and asset classes with quantitative validation.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Risk Management Proficiency</h3>
+                        <p>Implement quantitative risk assessment techniques and dynamic position sizing strategies appropriate for 2025 market volatility levels and regulatory requirements.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Pattern Recognition Skills</h3>
+                        <p>Develop ability to identify and validate recurring market patterns using statistical methods, machine learning algorithms, and backtesting frameworks.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Portfolio Construction</h3>
+                        <p>Apply modern portfolio theory concepts and optimization algorithms to build diversified, risk-adjusted portfolios suited to current market dynamics.</p>
+                    </div>
+                </div>
+
+                <div class="final-cta">
+                    <div class="final-cta-content">
+                        <h2>Start Your Analytical Journey</h2>
+                        <p style="margin: 1.5rem 0; opacity: 0.9;">Master systematic market analysis with our comprehensive educational framework.</p>
+                        <button class="btn btn-primary" onclick="showPage('purchase')">Begin Learning</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- SAMPLE ANALYSIS PAGE -->
+    <div id="sample" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #1E3A5F 0%, #F59E0B 100%);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Sample Market Analysis</h1>
+                    <p>Algorithmic Pattern Recognition Framework Demonstration</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Market Structure Analysis: Q1 2025</h2>
+                
+                <div class="sample-content">
+                    <h3>Analytical Framework</h3>
+                    <p>Our analysis begins with market structure identification, focusing on key support and resistance levels derived from volume profile analysis and price clustering patterns across multiple timeframes.</p>
+                    
+                    <div class="chapter-card">
+                        <h4>Data Analysis Process</h4>
+                        <p><strong>Volume Analysis:</strong> Examination of volume at price levels across multiple timeframes to identify significant support and resistance zones with statistical significance.</p>
+                        <p><strong>Price Clustering:</strong> Statistical analysis of price action clustering to determine areas of high transaction density and potential reversal points.</p>
+                        <p><strong>Volatility Assessment:</strong> Measurement of historical and implied volatility to establish appropriate position sizing parameters and risk thresholds.</p>
+                    </div>
+
+                    <div class="chapter-card">
+                        <h4>Pattern Recognition Results</h4>
+                        <p>Using algorithmic pattern detection, we identify recurring market behaviors that have demonstrated statistical significance in backtesting. This analysis reveals:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem;">
+                            <li>Breakout confirmation patterns with 68% accuracy</li>
+                            <li>Mean reversion signals in range-bound conditions</li>
+                            <li>Trend continuation probabilities across timeframes</li>
+                            <li>Volume-price divergence analysis for reversal signals</li>
+                        </ul>
+                    </div>
+
+                    <div class="disclaimer-box">
+                        <h4>Important Notice</h4>
+                        <p>This sample analysis is for educational purposes only. Past performance does not guarantee future results. Market conditions change rapidly, and this analysis should not be considered as financial advice.</p>
                     </div>
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="purchase.html" class="btn btn-primary">Access Full Platform</a>
-                    <a href="sample.html" class="btn btn-secondary">View Sample Analysis</a>
+                    <button class="btn btn-primary" onclick="showPage('purchase')">Access Complete Analysis</button>
+                    <button class="btn btn-secondary" onclick="showPage('methodology')">Learn Our Methodology</button>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        </main>
+    </div>
 
-    <main class="container">
-        <section class="content-section">
-            <h2 class="section-title">Comprehensive Analytical Framework</h2>
-            
-            <div class="chapter-grid">
-                <div class="chapter-card">
-                    <h3>Algorithmic Market Analysis</h3>
-                    <p>Advanced pattern recognition techniques and machine learning applications for identifying market opportunities in 2025 market conditions with quantitative validation.</p>
-                </div>
-                
-                <div class="chapter-card">
-                    <h3>Risk Management Systems</h3>
-                    <p>Quantitative risk assessment models and dynamic position sizing algorithms designed for volatile market environments with multiple timeframe analysis.</p>
-                </div>
-                
-                <div class="chapter-card">
-                    <h3>Data-Driven Frameworks</h3>
-                    <p>Systematic approaches to market analysis that remove emotional bias and focus on statistical probabilities across multiple asset classes.</p>
-                </div>
-                
-                <div class="chapter-card">
-                    <h3>Portfolio Optimization</h3>
-                    <p>Modern portfolio theory applications and algorithmic rebalancing strategies specifically designed for 2025 market dynamics and regulatory changes.</p>
+    <!-- PURCHASE PAGE -->
+    <div id="purchase" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #27ae60 0%, #2d9cdb 100%);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Access TradeInsights Platform</h1>
+                    <p>Complete algorithmic analysis framework for 2025 markets</p>
                 </div>
             </div>
         </section>
 
-        <section class="final-cta">
-            <div class="final-cta-content">
-                <h2>Ready for Advanced Market Analysis?</h2>
-                <p style="margin: 1.5rem 0; opacity: 0.9;">Join professional analysts using systematic approaches to identify market opportunities with quantified risk parameters.</p>
-                <a href="purchase.html" class="btn btn-primary" style="background: var(--white); color: var(--primary-blue);">Get Complete Access</a>
-                <p style="margin-top: 1.5rem; opacity: 0.8; font-style: italic;">30-Day Analytical Framework Guarantee</p>
-            </div>
-        </section>
-    </main>
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Choose Your Access Level</h2>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-item">
+                        <h3>Standard Access</h3>
+                        <div class="price">$47</div>
+                        <p>Complete analytical framework</p>
+                        <ul style="text-align: left; margin: 1.5rem 0;">
+                            <li>Full algorithmic analysis methodology</li>
+                            <li>Risk management frameworks</li>
+                            <li>Pattern recognition systems</li>
+                            <li>Portfolio optimization strategies</li>
+                            <li>Multiple format access</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;">Get Standard Access</button>
+                    </div>
+                    
+                    <div class="pricing-item featured">
+                        <h3>Professional Access</h3>
+                        <div class="price">$97</div>
+                        <p>Complete system with advanced tools</p>
+                        <ul style="text-align: left; margin: 1.5rem 0;">
+                            <li>Everything in Standard Access</li>
+                            <li>Additional advanced strategies</li>
+                            <li>Excel analysis templates</li>
+                            <li>Risk calculation worksheets</li>
+                            <li>Portfolio tracking tools</li>
+                            <li>Priority email support</li>
+                            <li>1 year of methodology updates</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%; background: var(--accent-teal);">Get Professional Access</button>
+                    </div>
+                </div>
 
+                <div class="final-cta">
+                    <div class="final-cta-content">
+                        <h3>30-Day Knowledge Guarantee</h3>
+                        <p style="margin: 1rem 0;">If you apply our methodologies and don't feel they enhance your analytical capabilities, contact us within 30 days for a full refund.</p>
+                        <p><strong>Note:</strong> This is a demonstration. Actual payment processing would be implemented with services like Gumroad or Stripe.</p>
+                    </div>
+                </div>
+
+                <div class="disclaimer-box">
+                    <h4>Risk Disclaimer</h4>
+                    <p>Financial markets involve substantial risk of loss and are not suitable for all investors. The analytical methodologies presented are for educational purposes and should not be considered as financial advice. Past performance does not guarantee future results.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-links">
                     <h4>Platform</h4>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">Methodology</a>
-                    <a href="goals.html">Objectives</a>
-                    <a href="sample.html">Sample Analysis</a>
+                    <a onclick="showPage('home')">Home</a>
+                    <a onclick="showPage('methodology')">Methodology</a>
+                    <a onclick="showPage('objectives')">Objectives</a>
+                    <a onclick="showPage('sample')">Sample Analysis</a>
                 </div>
                 <div class="footer-links">
                     <h4>Legal</h4>
-                    <a href="disclaimer.html">Risk Disclaimer</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
+                    <a href="#disclaimer">Risk Disclaimer</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
                 </div>
                 <div class="footer-links">
                     <h4>Support</h4>
-                    <a href="contact.html">Contact</a>
-                    <a href="purchase.html">Access Platform</a>
+                    <a href="#contact">Contact</a>
+                    <a onclick="showPage('purchase')">Access Platform</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -713,49 +999,31 @@
         </div>
     </footer>
 
-    <!-- FIXED: Enhanced Mobile Menu JavaScript -->
+    <!-- FIXED: Complete JavaScript Solution -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileNav = document.getElementById('mobileNav');
-            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        // Page Management
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
             
-            function toggleMobileMenu() {
-                mobileMenuBtn.classList.toggle('active');
-                mobileNav.classList.toggle('active');
-                mobileNavOverlay.classList.toggle('active');
-                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Close mobile menu if open
+            if (mobileNav.classList.contains('active')) {
+                toggleMobileMenu();
             }
-            
-            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-            mobileNavOverlay.addEventListener('click', toggleMobileMenu);
-            
-            // Close menu when clicking on mobile nav links
-            mobileNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', toggleMobileMenu);
-            });
-            
-            // Close menu on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
-                    toggleMobileMenu();
-                }
-            });
-            
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+        }
+
+        // Mobile Menu Management
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        
+        function toggleMobileMenu() {
+            mobileMenuBtn
