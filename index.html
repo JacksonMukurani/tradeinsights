@@ -168,7 +168,7 @@
             left: 0;
             width: 100%;
             height: 0;
-            z-index: 998; /* Lower than header */
+            z-index: 998;
             overflow: hidden;
             transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -182,30 +182,11 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 30%; /* Only left part is clickable to close */
+            width: 30%;
             height: 100%;
             background: transparent;
             cursor: pointer;
             z-index: 1;
-        }
-
-        /* Swipe Indicator */
-        .swipe-indicator {
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            opacity: 0;
-            transition: opacity 0.3s ease 0.5s;
-            pointer-events: none;
-        }
-
-        body.menu-open .swipe-indicator {
-            opacity: 1;
         }
 
         .liquid-background {
@@ -224,24 +205,6 @@
 
         body.menu-open .liquid-background {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        }
-
-        /* Wave Animation */
-        .liquid-background::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="white"/></svg>');
-            background-size: 1200px 20px;
-            animation: wave 12s linear infinite;
-        }
-
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-1200px); }
         }
 
         /* Menu Content */
@@ -265,7 +228,6 @@
         .liquid-menu-header {
             text-align: center;
             margin-bottom: 3rem;
-            position: relative;
         }
 
         .liquid-menu-title {
@@ -278,21 +240,6 @@
         .liquid-menu-subtitle {
             color: rgba(255, 255, 255, 0.8);
             font-size: 1rem;
-        }
-
-        /* Close Hint */
-        .close-hint {
-            position: absolute;
-            top: -2rem;
-            right: 0;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.8rem;
-            animation: pulseHint 2s infinite;
-        }
-
-        @keyframes pulseHint {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
         }
 
         .liquid-nav {
@@ -384,9 +331,309 @@
             padding: 0 1rem;
         }
 
-        /* Rest of your existing styles... */
+        /* HERO SECTION */
+        .hero {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><polygon points="100,100 200,50 300,100" fill="white"/><polygon points="700,200 800,150 900,200" fill="white"/><polygon points="400,300 500,250 600,300" fill="white"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            min-width: 160px;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--success-green);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .content-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .chapter-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent-teal);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-accent);
+            opacity: 0.1;
+            transition: left 0.3s ease;
+        }
+
+        .chapter-card:hover::before {
+            left: 0;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .final-cta {
+            background: var(--gradient-accent);
+            color: var(--white);
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: sparkle 20s infinite linear;
+        }
+
+        @keyframes sparkle {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .site-footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Page-specific styles */
+        .methodology-grid, .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .methodology-item, .pricing-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .pricing-item.featured {
+            border: 3px solid var(--accent-teal);
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin: 1rem 0;
+        }
+
+        .sample-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .disclaimer-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
 
         /* FIXED: Enhanced Mobile Responsive Design */
+        @media (max-width: 1024px) {
+            .main-nav {
+                gap: 0.5rem;
+            }
+            
+            .main-nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .main-nav a.nav-cta {
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 0 1.5rem;
@@ -400,32 +647,106 @@
                 display: none;
             }
 
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .benefits-grid, .methodology-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .content-section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .chapter-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .final-cta {
+                padding: 3rem 1.5rem;
+                border-radius: 20px;
+                margin: 2rem 0;
+            }
+
             .liquid-menu-content {
                 padding: 7rem 1.5rem 2rem;
             }
 
             .menu-overlay {
-                width: 25%; /* Smaller tap area on mobile */
+                width: 25%;
             }
 
-            .swipe-indicator {
-                left: 5px;
-                font-size: 0.8rem;
+            .pricing-item.featured {
+                transform: none;
             }
         }
 
         @media (max-width: 480px) {
-            .menu-overlay {
-                width: 20%; /* Even smaller on very small screens */
+            .hero h1 {
+                font-size: 1.8rem;
             }
 
-            .swipe-indicator {
-                display: none; /* Hide on very small screens */
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .benefit-card, .methodology-item, .pricing-item {
+                padding: 1.5rem;
+            }
+
+            .chapter-card {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .liquid-nav a {
+                padding: 1.2rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            .menu-overlay {
+                width: 20%;
             }
         }
 
         /* Touch-friendly enhancements */
         @media (hover: none) {
+            .benefit-card:hover,
+            .chapter-card:hover,
+            .btn-primary:hover,
+            .btn-secondary:hover,
             .liquid-nav a:hover {
                 transform: none;
             }
@@ -468,20 +789,14 @@
         </div>
     </header>
 
-    <!-- FIXED: Enhanced Liquid Menu with Multiple Close Methods -->
+    <!-- FIXED: Enhanced Liquid Menu -->
     <div class="liquid-menu-container" id="liquidMenu">
-        <!-- TAP ANYWHERE TO CLOSE AREA -->
         <div class="menu-overlay" id="menuOverlay"></div>
-        
-        <!-- SWIPE INDICATOR -->
-        <div class="swipe-indicator">Swipe ← to close</div>
-        
         <div class="liquid-background"></div>
         <div class="liquid-menu-content">
             <div class="liquid-menu-header">
                 <div class="liquid-menu-title">TradeInsights</div>
                 <div class="liquid-menu-subtitle">Advanced Market Intelligence</div>
-                <div class="close-hint">Tap left edge or swipe to close</div>
             </div>
             <nav class="liquid-nav">
                 <a onclick="navigateToPage('home')">Home</a>
@@ -493,132 +808,248 @@
         </div>
     </div>
 
-    <!-- Rest of your pages remain exactly the same -->
+    <!-- FIXED: COMPLETE HOME PAGE CONTENT -->
     <div id="home" class="page active">
-        <!-- Your existing home page content -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Advanced Market Intelligence for 2025</h1>
+                    <p>Algorithmic analysis frameworks designed for modern financial markets with adaptive risk management systems</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">AI</div>
+                            <h3>Machine Learning Analysis</h3>
+                            <p>Advanced pattern recognition and predictive modeling</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">RM</div>
+                            <h3>Risk Management</h3>
+                            <p>Quantitative risk assessment and position sizing algorithms</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">DA</div>
+                            <h3>Data Analytics</h3>
+                            <p>Statistical analysis and market behavior modeling</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="showPage('purchase')">Access Full Platform</button>
+                        <button class="btn btn-secondary" onclick="showPage('sample')">View Sample Analysis</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Comprehensive Analytical Framework</h2>
+                
+                <div class="chapter-grid">
+                    <div class="chapter-card">
+                        <h3>Algorithmic Market Analysis</h3>
+                        <p>Advanced pattern recognition techniques and machine learning applications for identifying market opportunities in 2025 market conditions with quantitative validation.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Risk Management Systems</h3>
+                        <p>Quantitative risk assessment models and dynamic position sizing algorithms designed for volatile market environments with multiple timeframe analysis.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Data-Driven Frameworks</h3>
+                        <p>Systematic approaches to market analysis that remove emotional bias and focus on statistical probabilities across multiple asset classes.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Portfolio Optimization</h3>
+                        <p>Modern portfolio theory applications and algorithmic rebalancing strategies specifically designed for 2025 market dynamics and regulatory changes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="final-cta">
+                <div class="final-cta-content">
+                    <h2>Ready for Advanced Market Analysis?</h2>
+                    <p style="margin: 1.5rem 0; opacity: 0.9;">Join professional analysts using systematic approaches to identify market opportunities with quantified risk parameters.</p>
+                    <button class="btn btn-primary" onclick="showPage('purchase')" style="background: var(--white); color: var(--primary-blue);">Get Complete Access</button>
+                    <p style="margin-top: 1.5rem; opacity: 0.8; font-style: italic;">30-Day Analytical Framework Guarantee</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <!-- Other pages remain exactly as before -->
+    <!-- METHODOLOGY PAGE -->
+    <div id="methodology" class="page">
+        <section class="hero" style="background: var(--gradient-accent);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Our Analytical Methodology</h1>
+                    <p>Systematic approaches to market analysis using quantitative methods and machine learning</p>
+                </div>
+            </div>
+        </section>
 
-    <footer class="site-footer">
-        <!-- Your existing footer -->
-    </footer>
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Methodological Framework</h2>
+                
+                <div class="methodology-grid">
+                    <div class="methodology-item">
+                        <h3>Quantitative Analysis</h3>
+                        <p>Statistical modeling of market data using regression analysis, time series forecasting, and probability distributions to identify patterns and relationships.</p>
+                    </div>
+                    
+                    <div class="methodology-item">
+                        <h3>Machine Learning</h3>
+                        <p>Application of supervised and unsupervised learning algorithms for pattern recognition, classification, and predictive modeling across multiple asset classes.</p>
+                    </div>
+                    
+                    <div class="methodology-item">
+                        <h3>Risk Assessment</h3>
+                        <p>Comprehensive risk modeling including value at risk (VaR), stress testing, scenario analysis, and correlation studies to quantify and manage portfolio risk.</p>
+                    </div>
+                </div>
 
-    <!-- FIXED: Enhanced JavaScript with Multiple Close Methods -->
-    <script>
-        // Page Management
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
-        }
+                <div class="chapter-card">
+                    <h3>Data Processing Pipeline</h3>
+                    <p>Our methodology begins with robust data collection and preprocessing, including:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li>Real-time market data ingestion and validation</li>
+                        <li>Feature engineering and dimensionality reduction</li>
+                        <li>Normalization and standardization procedures</li>
+                        <li>Outlier detection and handling</li>
+                    </ul>
+                </div>
 
-        // Navigation with auto-close
-        function navigateToPage(pageId) {
-            showPage(pageId);
-            closeLiquidMenu();
-        }
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showPage('sample')">View Sample Analysis</button>
+                    <button class="btn btn-secondary" onclick="showPage('purchase')">Access Full Methodology</button>
+                </div>
+            </section>
+        </main>
+    </div>
 
-        // Liquid Menu Management
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const liquidMenu = document.getElementById('liquidMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        
-        function toggleLiquidMenu() {
-            document.body.classList.toggle('menu-open');
-            document.body.style.overflow = document.body.classList.contains('menu-open') ? 'hidden' : '';
-        }
-        
-        function closeLiquidMenu() {
-            document.body.classList.remove('menu-open');
-            document.body.style.overflow = '';
-        }
-        
-        // Menu button click
-        mobileMenuBtn.addEventListener('click', toggleLiquidMenu);
-        
-        // FIXED: Tap anywhere to close
-        menuOverlay.addEventListener('click', closeLiquidMenu);
-        
-        // FIXED: Also close when clicking on liquid background
-        liquidMenu.addEventListener('click', function(e) {
-            if (e.target === liquidMenu) {
-                closeLiquidMenu();
-            }
-        });
+    <!-- OBJECTIVES PAGE -->
+    <div id="objectives" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #2E5F8A 0%, #4CAF50 100%);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Learning Objectives</h1>
+                    <p>Develop systematic market analysis skills for 2025 trading environments</p>
+                </div>
+            </div>
+        </section>
 
-        // FIXED: Swipe to close functionality
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        liquidMenu.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-        
-        liquidMenu.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const swipeDistance = touchEndX - touchStartX;
-            
-            // Swipe right to close (positive distance)
-            if (swipeDistance > swipeThreshold && document.body.classList.contains('menu-open')) {
-                closeLiquidMenu();
-            }
-        }
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Educational Outcomes</h2>
+                
+                <div class="chapter-grid">
+                    <div class="chapter-card">
+                        <h3>Analytical Framework Development</h3>
+                        <p>Establish systematic approaches to market analysis that can be consistently applied across different market conditions and asset classes with quantitative validation.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Risk Management Proficiency</h3>
+                        <p>Implement quantitative risk assessment techniques and dynamic position sizing strategies appropriate for 2025 market volatility levels and regulatory requirements.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Pattern Recognition Skills</h3>
+                        <p>Develop ability to identify and validate recurring market patterns using statistical methods, machine learning algorithms, and backtesting frameworks.</p>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <h3>Portfolio Construction</h3>
+                        <p>Apply modern portfolio theory concepts and optimization algorithms to build diversified, risk-adjusted portfolios suited to current market dynamics.</p>
+                    </div>
+                </div>
 
-        // FIXED: Escape key to close
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
-                closeLiquidMenu();
-            }
-        });
+                <div class="final-cta">
+                    <div class="final-cta-content">
+                        <h2>Start Your Analytical Journey</h2>
+                        <p style="margin: 1.5rem 0; opacity: 0.9;">Master systematic market analysis with our comprehensive educational framework.</p>
+                        <button class="btn btn-primary" onclick="showPage('purchase')">Begin Learning</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
-        // FIXED: Back button support (Android)
-        window.addEventListener('popstate', function() {
-            if (document.body.classList.contains('menu-open')) {
-                closeLiquidMenu();
-            }
-        });
+    <!-- SAMPLE ANALYSIS PAGE -->
+    <div id="sample" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #1E3A5F 0%, #F59E0B 100%);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Sample Market Analysis</h1>
+                    <p>Algorithmic Pattern Recognition Framework Demonstration</p>
+                </div>
+            </div>
+        </section>
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            showPage('home');
-            
-            // Add history state for back button support
-            if (window.history && window.history.pushState) {
-                window.history.pushState({ menuOpen: false }, '');
-            }
-        });
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Market Structure Analysis: Q1 2025</h2>
+                
+                <div class="sample-content">
+                    <h3>Analytical Framework</h3>
+                    <p>Our analysis begins with market structure identification, focusing on key support and resistance levels derived from volume profile analysis and price clustering patterns across multiple timeframes.</p>
+                    
+                    <div class="chapter-card">
+                        <h4>Data Analysis Process</h4>
+                        <p><strong>Volume Analysis:</strong> Examination of volume at price levels across multiple timeframes to identify significant support and resistance zones with statistical significance.</p>
+                        <p><strong>Price Clustering:</strong> Statistical analysis of price action clustering to determine areas of high transaction density and potential reversal points.</p>
+                        <p><strong>Volatility Assessment:</strong> Measurement of historical and implied volatility to establish appropriate position sizing parameters and risk thresholds.</p>
+                    </div>
 
-        // Enhanced back button handling
-        window.addEventListener('popstate', function(event) {
-            if (document.body.classList.contains('menu-open')) {
-                closeLiquidMenu();
-                event.preventDefault();
-            }
-        });
+                    <div class="chapter-card">
+                        <h4>Pattern Recognition Results</h4>
+                        <p>Using algorithmic pattern detection, we identify recurring market behaviors that have demonstrated statistical significance in backtesting. This analysis reveals:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem;">
+                            <li>Breakout confirmation patterns with 68% accuracy</li>
+                            <li>Mean reversion signals in range-bound conditions</li>
+                            <li>Trend continuation probabilities across timeframes</li>
+                            <li>Volume-price divergence analysis for reversal signals</li>
+                        </ul>
+                    </div>
 
-        // Header scroll behavior
-        let lastScrollTop = 0;
-        const header = document.querySelector('.site-header');
-        
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop && scrollTop > 100 && !document.body.classList.contains('menu-open')) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollTop = scrollTop;
-        }, { passive: true });
-    </script>
-</body>
-</html>
+                    <div class="disclaimer-box">
+                        <h4>Important Notice</h4>
+                        <p>This sample analysis is for educational purposes only. Past performance does not guarantee future results. Market conditions change rapidly, and this analysis should not be considered as financial advice.</p>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showPage('purchase')">Access Complete Analysis</button>
+                    <button class="btn btn-secondary" onclick="showPage('methodology')">Learn Our Methodology</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- PURCHASE PAGE -->
+    <div id="purchase" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #27ae60 0%, #2d9cdb 100%);">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Access TradeInsights Platform</h1>
+                    <p>Complete algorithmic analysis framework for 2025 markets</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="container">
+            <section class="content-section">
+                <h2 class="section-title">Choose Your Access Level</h2>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-item">
+                        <h3>Standard Access</h3>
+                        <div class="price">$47</div>
+                        <p>Complete analytical framework</p>
+                        <ul style="text-align: left; margin: 1.5rem 0;">
+                            <li>Full algorithmic analysis methodology</li>
+                           
