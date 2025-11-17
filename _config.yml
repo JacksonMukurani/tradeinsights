@@ -1,17 +1,12 @@
 title: "Your Book Title - Financial Freedom Guide"
-description: "AI-powered financial strategies and insights for modern investors"
+description: "AI-powered financial strategies and insights"
 baseurl: ""
-url: "https://yourusername.github.io"
-github_username: yourusername
-
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+url: "https://jacksonmkurani.github.io"
+theme: minima
 
 # Build settings
 markdown: kramdown
-theme: minima
+permalink: pretty
 
 # Custom variables
 author_name: "Your Name"
