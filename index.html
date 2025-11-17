@@ -46,7 +46,7 @@
             padding: 0 1rem;
         }
 
-        /* Enhanced Mobile Header */
+        /* FIXED: Enhanced Mobile Header */
         .site-header {
             background: var(--white);
             backdrop-filter: blur(10px);
@@ -63,6 +63,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -74,9 +75,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            z-index: 1001;
         }
 
-        /* Mobile Navigation */
+        /* FIXED: Proper Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             flex-direction: column;
@@ -84,6 +86,11 @@
             border: none;
             cursor: pointer;
             padding: 0.5rem;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
         }
 
         .mobile-menu-btn span {
@@ -92,11 +99,25 @@
             background: var(--primary-blue);
             margin: 2px 0;
             transition: 0.3s;
+            transform-origin: center;
         }
 
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* FIXED: Desktop Navigation */
         .main-nav {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
         }
 
@@ -107,17 +128,19 @@
             padding: 0.5rem 1rem;
             border-radius: 25px;
             transition: all 0.3s ease;
-            position: relative;
+            white-space: nowrap;
         }
 
         .main-nav a:hover {
             color: var(--accent-teal);
+            background: var(--background-light);
         }
 
         .main-nav a.nav-cta {
             background: var(--gradient-primary);
             color: var(--white);
             padding: 0.75rem 1.5rem;
+            margin-left: 0.5rem;
         }
 
         .main-nav a.nav-cta:hover {
@@ -125,7 +148,73 @@
             box-shadow: var(--shadow);
         }
 
-        /* Creative Hero Section */
+        /* FIXED: Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        .mobile-nav-overlay.active {
+            display: block;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100%;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 5rem 1.5rem 2rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav a {
+            display: block;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .mobile-nav a:hover {
+            background: var(--background-light);
+            border-left-color: var(--accent-teal);
+            color: var(--accent-teal);
+        }
+
+        .mobile-nav a.nav-cta {
+            background: var(--gradient-primary);
+            color: var(--white);
+            margin-top: 1rem;
+            text-align: center;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .mobile-nav a.nav-cta:hover {
+            transform: translateX(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Rest of your existing styles remain the same */
         .hero {
             background: var(--gradient-primary);
             color: var(--white);
@@ -172,7 +261,6 @@
             margin-right: auto;
         }
 
-        /* Creative Benefits Grid */
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -207,7 +295,6 @@
             color: var(--primary-blue);
         }
 
-        /* Creative CTA Buttons */
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -249,7 +336,6 @@
             color: var(--primary-blue);
         }
 
-        /* Creative Content Sections */
         .content-section {
             padding: 5rem 0;
         }
@@ -265,7 +351,6 @@
             background-clip: text;
         }
 
-        /* Creative Chapter Cards */
         .chapter-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -304,7 +389,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
-        /* Creative Final CTA */
         .final-cta {
             background: var(--gradient-accent);
             color: var(--white);
@@ -338,7 +422,6 @@
             z-index: 2;
         }
 
-        /* Enhanced Footer */
         .site-footer {
             background: var(--primary-blue);
             color: var(--white);
@@ -370,36 +453,34 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Mobile Responsive Design */
+        /* FIXED: Enhanced Mobile Responsive Design */
+        @media (max-width: 1024px) {
+            .main-nav {
+                gap: 0.5rem;
+            }
+            
+            .main-nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .main-nav a.nav-cta {
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 0 1.5rem;
             }
 
+            /* FIXED: Show mobile menu button, hide desktop nav */
             .mobile-menu-btn {
                 display: flex;
             }
 
             .main-nav {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: var(--shadow);
-            }
-
-            .main-nav.active {
-                display: flex;
-            }
-
-            .main-nav a {
-                width: 100%;
-                text-align: center;
-                padding: 1rem;
             }
 
             .hero {
@@ -469,6 +550,15 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+
+            .mobile-nav {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .mobile-nav.active {
+                right: 0;
+            }
         }
 
         /* Touch-friendly enhancements */
@@ -476,7 +566,8 @@
             .benefit-card:hover,
             .chapter-card:hover,
             .btn-primary:hover,
-            .btn-secondary:hover {
+            .btn-secondary:hover,
+            .mobile-nav a:hover {
                 transform: none;
             }
 
@@ -487,30 +578,44 @@
     </style>
 </head>
 <body>
-    <!-- Enhanced Header with Mobile Menu -->
+    <!-- FIXED: Enhanced Header with Proper Mobile Menu -->
     <header class="site-header">
         <div class="container">
             <div class="header-content">
                 <a href="index.html" class="logo">TradeInsights</a>
                 
-                <button class="mobile-menu-btn" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <nav class="main-nav" id="mainNav">
+                <!-- Desktop Navigation -->
+                <nav class="main-nav">
                     <a href="index.html">Home</a>
                     <a href="about.html">Methodology</a>
                     <a href="goals.html">Objectives</a>
                     <a href="sample.html">Analysis</a>
                     <a href="purchase.html" class="nav-cta">Access Platform</a>
                 </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" aria-label="Toggle menu" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="about.html">Methodology</a>
+            <a href="goals.html">Objectives</a>
+            <a href="sample.html">Analysis</a>
+            <a href="purchase.html" class="nav-cta">Access Platform</a>
+        </nav>
     </header>
 
-    <!-- Creative Hero Section -->
+    <!-- Rest of your content remains exactly the same -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -543,7 +648,6 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <main class="container">
         <section class="content-section">
             <h2 class="section-title">Comprehensive Analytical Framework</h2>
@@ -571,7 +675,6 @@
             </div>
         </section>
 
-        <!-- Creative Final CTA -->
         <section class="final-cta">
             <div class="final-cta-content">
                 <h2>Ready for Advanced Market Analysis?</h2>
@@ -582,7 +685,6 @@
         </section>
     </main>
 
-    <!-- Enhanced Footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
@@ -611,25 +713,35 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu JavaScript -->
+    <!-- FIXED: Enhanced Mobile Menu JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mainNav = document.getElementById('mainNav');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
             
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
+            function toggleMobileMenu() {
                 mobileMenuBtn.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                mobileNavOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            }
+            
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            mobileNavOverlay.addEventListener('click', toggleMobileMenu);
+            
+            // Close menu when clicking on mobile nav links
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', toggleMobileMenu);
             });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.header-content')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                    toggleMobileMenu();
                 }
             });
-
+            
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
