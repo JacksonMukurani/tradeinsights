@@ -36,6 +36,12 @@
             color: var(--text-dark);
             background: var(--white);
             overflow-x: hidden;
+            transition: filter 0.3s ease;
+        }
+
+        /* Dim background when menu is open */
+        body.menu-open {
+            filter: brightness(0.7);
         }
 
         /* Page Management */
@@ -53,7 +59,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* FIXED: Enhanced Mobile Header with Liquid Menu */
+        /* Enhanced Mobile Header */
         .site-header {
             background: var(--white);
             backdrop-filter: blur(10px);
@@ -67,11 +73,9 @@
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
         }
 
-        /* Header transforms when menu is open */
         body.menu-open .site-header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
         }
 
         .header-content {
@@ -110,7 +114,7 @@
             transition: all 0.3s ease;
         }
 
-        /* FIXED: Liquid Dropdown Menu System */
+        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             flex-direction: column;
@@ -157,14 +161,14 @@
             background: var(--accent-teal);
         }
 
-        /* FIXED: Liquid Dropdown Container */
+        /* FIXED: Enhanced Liquid Menu with Better Interaction */
         .liquid-menu-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 0;
-            z-index: 999;
+            z-index: 998; /* Lower than header */
             overflow: hidden;
             transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -173,7 +177,37 @@
             height: 100vh;
         }
 
-        /* Liquid Background with Wave Effect */
+        /* Clickable Overlay - TAP ANYWHERE TO CLOSE */
+        .menu-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30%; /* Only left part is clickable to close */
+            height: 100%;
+            background: transparent;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* Swipe Indicator */
+        .swipe-indicator {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.5s;
+            pointer-events: none;
+        }
+
+        body.menu-open .swipe-indicator {
+            opacity: 1;
+        }
+
         .liquid-background {
             position: absolute;
             top: 0;
@@ -231,6 +265,7 @@
         .liquid-menu-header {
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
         }
 
         .liquid-menu-title {
@@ -243,6 +278,21 @@
         .liquid-menu-subtitle {
             color: rgba(255, 255, 255, 0.8);
             font-size: 1rem;
+        }
+
+        /* Close Hint */
+        .close-hint {
+            position: absolute;
+            top: -2rem;
+            right: 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            animation: pulseHint 2s infinite;
+        }
+
+        @keyframes pulseHint {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
 
         .liquid-nav {
@@ -265,6 +315,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 1.1rem;
+            cursor: pointer;
         }
 
         .liquid-nav a:hover {
@@ -333,265 +384,9 @@
             padding: 0 1rem;
         }
 
-        /* Rest of your existing styles remain exactly the same */
-        .hero {
-            background: var(--gradient-primary);
-            color: var(--white);
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><polygon points="100,100 200,50 300,100" fill="white"/><polygon points="700,200 800,150 900,200" fill="white"/><polygon points="400,300 500,250 600,300" fill="white"/></svg>');
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .benefit-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-            text-align: center;
-            min-width: 160px;
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: var(--success-green);
-            color: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(39, 174, 96, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary-blue);
-        }
-
-        .content-section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .chapter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .chapter-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            border-left: 5px solid var(--accent-teal);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chapter-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-accent);
-            opacity: 0.1;
-            transition: left 0.3s ease;
-        }
-
-        .chapter-card:hover::before {
-            left: 0;
-        }
-
-        .chapter-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .final-cta {
-            background: var(--gradient-accent);
-            color: var(--white);
-            padding: 4rem 2rem;
-            border-radius: 30px;
-            text-align: center;
-            margin: 3rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .final-cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            animation: sparkle 20s infinite linear;
-        }
-
-        @keyframes sparkle {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .final-cta-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .site-footer {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        /* Rest of your existing styles... */
 
         /* FIXED: Enhanced Mobile Responsive Design */
-        @media (max-width: 1024px) {
-            .main-nav {
-                gap: 0.5rem;
-            }
-            
-            .main-nav a {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.9rem;
-            }
-            
-            .main-nav a.nav-cta {
-                padding: 0.6rem 1.2rem;
-            }
-        }
-
         @media (max-width: 768px) {
             .container {
                 padding: 0 1.5rem;
@@ -605,94 +400,32 @@
                 display: none;
             }
 
-            .hero {
-                padding: 6rem 0 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-            }
-
-            .content-section {
-                padding: 3rem 0;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .chapter-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .final-cta {
-                padding: 3rem 1.5rem;
-                border-radius: 20px;
-                margin: 2rem 0;
-            }
-
             .liquid-menu-content {
                 padding: 7rem 1.5rem 2rem;
+            }
+
+            .menu-overlay {
+                width: 25%; /* Smaller tap area on mobile */
+            }
+
+            .swipe-indicator {
+                left: 5px;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
+            .menu-overlay {
+                width: 20%; /* Even smaller on very small screens */
             }
 
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .benefit-card {
-                padding: 1.5rem;
-            }
-
-            .chapter-card {
-                padding: 1.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .logo {
-                font-size: 1.3rem;
-            }
-
-            .liquid-nav a {
-                padding: 1.2rem 1.2rem;
-                font-size: 1rem;
+            .swipe-indicator {
+                display: none; /* Hide on very small screens */
             }
         }
 
         /* Touch-friendly enhancements */
         @media (hover: none) {
-            .benefit-card:hover,
-            .chapter-card:hover,
-            .btn-primary:hover,
-            .btn-secondary:hover,
             .liquid-nav a:hover {
                 transform: none;
             }
@@ -708,7 +441,7 @@
     </style>
 </head>
 <body>
-    <!-- FIXED: Header with Liquid Menu System -->
+    <!-- Enhanced Header -->
     <header class="site-header">
         <div class="container">
             <div class="header-content">
@@ -735,20 +468,27 @@
         </div>
     </header>
 
-    <!-- FIXED: Liquid Dropdown Menu -->
+    <!-- FIXED: Enhanced Liquid Menu with Multiple Close Methods -->
     <div class="liquid-menu-container" id="liquidMenu">
+        <!-- TAP ANYWHERE TO CLOSE AREA -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+        
+        <!-- SWIPE INDICATOR -->
+        <div class="swipe-indicator">Swipe ← to close</div>
+        
         <div class="liquid-background"></div>
         <div class="liquid-menu-content">
             <div class="liquid-menu-header">
                 <div class="liquid-menu-title">TradeInsights</div>
                 <div class="liquid-menu-subtitle">Advanced Market Intelligence</div>
+                <div class="close-hint">Tap left edge or swipe to close</div>
             </div>
             <nav class="liquid-nav">
-                <a onclick="showPage('home'); toggleLiquidMenu();">Home</a>
-                <a onclick="showPage('methodology'); toggleLiquidMenu();">Methodology</a>
-                <a onclick="showPage('objectives'); toggleLiquidMenu();">Objectives</a>
-                <a onclick="showPage('sample'); toggleLiquidMenu();">Analysis</a>
-                <a onclick="showPage('purchase'); toggleLiquidMenu();" class="nav-cta">Access Platform</a>
+                <a onclick="navigateToPage('home')">Home</a>
+                <a onclick="navigateToPage('methodology')">Methodology</a>
+                <a onclick="navigateToPage('objectives')">Objectives</a>
+                <a onclick="navigateToPage('sample')">Analysis</a>
+                <a onclick="navigateToPage('purchase')" class="nav-cta">Access Platform</a>
             </nav>
         </div>
     </div>
@@ -764,7 +504,7 @@
         <!-- Your existing footer -->
     </footer>
 
-    <!-- FIXED: Enhanced JavaScript for Liquid Menu -->
+    <!-- FIXED: Enhanced JavaScript with Multiple Close Methods -->
     <script>
         // Page Management
         function showPage(pageId) {
@@ -773,51 +513,95 @@
             });
             document.getElementById(pageId).classList.add('active');
             window.scrollTo(0, 0);
-            
-            // Close menu if open
-            if (document.body.classList.contains('menu-open')) {
-                toggleLiquidMenu();
-            }
+        }
+
+        // Navigation with auto-close
+        function navigateToPage(pageId) {
+            showPage(pageId);
+            closeLiquidMenu();
         }
 
         // Liquid Menu Management
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const liquidMenu = document.getElementById('liquidMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
         
         function toggleLiquidMenu() {
             document.body.classList.toggle('menu-open');
-            
-            // Prevent body scroll when menu is open
             document.body.style.overflow = document.body.classList.contains('menu-open') ? 'hidden' : '';
-            
-            // Add subtle vibration effect to menu button
-            if (document.body.classList.contains('menu-open')) {
-                mobileMenuBtn.style.animation = 'vibrate 0.3s ease';
-                setTimeout(() => {
-                    mobileMenuBtn.style.animation = '';
-                }, 300);
-            }
         }
         
+        function closeLiquidMenu() {
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+        }
+        
+        // Menu button click
         mobileMenuBtn.addEventListener('click', toggleLiquidMenu);
         
-        // Close menu when clicking on liquid background (optional)
+        // FIXED: Tap anywhere to close
+        menuOverlay.addEventListener('click', closeLiquidMenu);
+        
+        // FIXED: Also close when clicking on liquid background
         liquidMenu.addEventListener('click', function(e) {
             if (e.target === liquidMenu) {
-                toggleLiquidMenu();
+                closeLiquidMenu();
             }
         });
+
+        // FIXED: Swipe to close functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
         
-        // Close menu on escape key
+        liquidMenu.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        liquidMenu.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const swipeDistance = touchEndX - touchStartX;
+            
+            // Swipe right to close (positive distance)
+            if (swipeDistance > swipeThreshold && document.body.classList.contains('menu-open')) {
+                closeLiquidMenu();
+            }
+        }
+
+        // FIXED: Escape key to close
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
-                toggleLiquidMenu();
+                closeLiquidMenu();
+            }
+        });
+
+        // FIXED: Back button support (Android)
+        window.addEventListener('popstate', function() {
+            if (document.body.classList.contains('menu-open')) {
+                closeLiquidMenu();
             }
         });
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             showPage('home');
+            
+            // Add history state for back button support
+            if (window.history && window.history.pushState) {
+                window.history.pushState({ menuOpen: false }, '');
+            }
+        });
+
+        // Enhanced back button handling
+        window.addEventListener('popstate', function(event) {
+            if (document.body.classList.contains('menu-open')) {
+                closeLiquidMenu();
+                event.preventDefault();
+            }
         });
 
         // Header scroll behavior
@@ -827,7 +611,7 @@
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
+            if (scrollTop > lastScrollTop && scrollTop > 100 && !document.body.classList.contains('menu-open')) {
                 header.style.transform = 'translateY(-100%)';
             } else {
                 header.style.transform = 'translateY(0)';
